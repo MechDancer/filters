@@ -15,7 +15,6 @@ plugins {
 
 apply plugin: 'org.jetbrains.dokka'
 apply plugin: 'com.novoda.bintray-release'
-apply plugin: 'scala'
 
 group 'org.mechdancer'
 version '0.1.0-SNAPSHOT'
@@ -26,7 +25,6 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    compile group: 'org.scala-lang', name: 'scala-library', version: '2.13.0-M4'
 }
 
 compileKotlin {
