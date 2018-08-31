@@ -2,26 +2,25 @@ package org.mechdancer.filters.signalAndSystem
 
 import java.lang.Math.abs
 
-class PID(private val _k: Double,
-          private val _ki: Double,
-          private val _kd: Double,
-          private val _integrateIArea: Double,
-          private val _deadArea: Double)
+class PID(private val k: Double,
+          private val ki: Double,
+          private val kd: Double,
+          private val integrateIArea: Double,
+          private val deadArea: Double)
 	: IMemorableOnlineSystem {
 
 	/** 运行参数  */
 	private var sum = 0.0
 	private var last = 0.0
 
-	@Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-	override fun invoke(error: Double): Double {
-		val value = abs(error)
-		sum = if (value > _integrateIArea) .0 else sum + error
-		if (value < _deadArea) sum *= .75
+	override fun invoke(data: Double): Double {
+		val value = abs(data)
+		sum = if (value > integrateIArea) .0 else sum + data
+		if (value < deadArea) sum *= .75
 		//计算
-		val result = error + _kd * (error - last) + _ki * sum
-		last = error
-		return _k * result
+		val result = data + kd * (data - last) + ki * sum
+		last = data
+		return k * result
 	}
 
 	/** 重置运行间参数  */

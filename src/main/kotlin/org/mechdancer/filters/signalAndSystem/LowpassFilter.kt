@@ -1,11 +1,11 @@
 package org.mechdancer.filters.signalAndSystem
 
-class LowpassFilter(private val _forgetRate: Double) : IMemorableOnlineSystem {
+class LowpassFilter(private val forgetRate: Double) : IMemorableOnlineSystem {
 	var memory = .0
 		private set
 
 	override fun invoke(data: Double): Double {
-		memory = memory * (1 - _forgetRate) + data * _forgetRate
+		memory = memory * (1 - forgetRate) + data * forgetRate
 		return memory
 	}
 
