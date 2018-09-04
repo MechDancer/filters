@@ -2,6 +2,7 @@
 
 [![Download](https://api.bintray.com/packages/mechdancer/maven/filters/images/download.svg) ](https://bintray.com/mechdancer/maven/filters/_latestVersion)
 [![Build Status](https://www.travis-ci.org/MechDancer/filters.svg?branch=master)](https://www.travis-ci.org/MechDancer/filters)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/76880fcf0d36479f8a819a9a736c5721)](https://www.codacy.com/app/berberman/filters?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=MechDancer/filters&amp;utm_campaign=Badge_Grade)
 
 ## 概述
 
@@ -37,7 +38,6 @@
 
 * 卡尔曼滤波器
 
-  
 ## 开始使用
 
 * Gradle
@@ -79,4 +79,3 @@ dependencies {
 ### Bintray
 
 您总可以从 bintray 直接下载 jar：[![Download](https://api.bintray.com/packages/mechdancer/maven/filters/images/download.svg) ](https://bintray.com/mechdancer/maven/filters/_latestVersion)
-  
