@@ -1,7 +1,7 @@
 language: kotlin
 
 jdk:
-  - oraclejdk8
+  - openjdk8
 
 sudo: true
 
