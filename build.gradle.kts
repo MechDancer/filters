@@ -14,7 +14,6 @@ repositories {
     maven("https://maven.aliyun.com/repository/jcenter")
 }
 
-
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     // 矩阵运算
@@ -33,9 +32,11 @@ dependencies {
 tasks {
     compileKotlin {
         kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions { freeCompilerArgs = listOf("-XXLanguage:+InlineClasses") }
     }
     compileTestKotlin {
         kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions { freeCompilerArgs = listOf("-XXLanguage:+InlineClasses") }
     }
 }
 
