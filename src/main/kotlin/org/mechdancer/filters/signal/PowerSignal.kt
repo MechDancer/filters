@@ -1,5 +1,7 @@
 package org.mechdancer.filters.signal
 
+import org.mechdancer.algebra.implement.vector.toListVector
+
 /** （离散）功率信号 */
 inline class PowerSignal(private val f: (t: Int) -> Double)
     : Signal<Int> {
@@ -23,4 +25,7 @@ inline class PowerSignal(private val f: (t: Int) -> Double)
 
     fun div(k: Double) =
         PowerSignal { tao: Int -> this[tao] / k }
+
+    fun truncate(range: IntRange) =
+        EnergySignal(range.first, range.map(f).toListVector())
 }

@@ -9,18 +9,21 @@ inline class ContinuousSignal(private val f: (t: Double) -> Double)
     fun delay(t: Double) =
         ContinuousSignal { tao: Double -> f(tao - t) }
 
-    fun plus(others: ContinuousSignal) =
+    operator fun plus(others: ContinuousSignal) =
         ContinuousSignal { tao: Double -> this[tao] + others[tao] }
 
-    fun minus(others: ContinuousSignal) =
+    operator fun minus(others: ContinuousSignal) =
         ContinuousSignal { tao: Double -> this[tao] - others[tao] }
 
-    fun times(others: ContinuousSignal) =
+    operator fun times(others: ContinuousSignal) =
         ContinuousSignal { tao: Double -> this[tao] * others[tao] }
 
-    fun times(k: Double) =
+    operator fun times(k: Double) =
         ContinuousSignal { tao: Double -> this[tao] * k }
 
-    fun div(k: Double) =
+    operator fun div(k: Double) =
         ContinuousSignal { tao: Double -> this[tao] / k }
+
+    fun sample(t: Double) =
+        PowerSignal { k: Int -> f(k * t) }
 }

@@ -1,6 +1,8 @@
 import org.mechdancer.algebra.implement.vector.Vector2D
 import org.mechdancer.algebra.implement.vector.Vector3D
+import org.mechdancer.algebra.implement.vector.vector2D
 import org.mechdancer.dependency.must
+import org.mechdancer.filters.signal.EnergySignal
 import org.mechdancer.remote.presets.RemoteHub
 import org.mechdancer.remote.protocol.writeEnd
 import org.mechdancer.remote.resources.Command
@@ -134,3 +136,9 @@ fun RemoteHub.paintFrame3(
         }
     }
 }
+
+// 画信号
+fun RemoteHub.paint(topic: String, signal: EnergySignal) =
+    signal.values.toList()
+        .mapIndexed { i, value -> vector2D(signal.tBegin + i, value) }
+        .let { paintFrame2(topic, listOf(it)) }

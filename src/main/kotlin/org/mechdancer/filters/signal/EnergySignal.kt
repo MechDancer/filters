@@ -58,7 +58,7 @@ class EnergySignal(val tBegin: Int = 0, val values: Vector)
     infix fun xcorr(others: EnergySignal) =
         EnergySignal(
             tBegin - others.length + 1,
-            List(length + (2 * others.length - 1)) {
+            List(length + others.length - 1) {
                 this dot others.delay(1 - others.length + it)
             }.toListVector())
 }
