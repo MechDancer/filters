@@ -10,5 +10,5 @@ fun EnergySignal.noise(snr: Double): EnergySignal {
     val p = values.length / snr
     val engine = java.util.Random()
     val n = List(length) { engine.nextGaussian() }.toListVector().normalize() * p
-    return EnergySignal(tBegin, values + n)
+    return EnergySignal(fs, tBegin, values + n)
 }

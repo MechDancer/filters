@@ -21,12 +21,12 @@ fun main() {
 
     while (true) {
         val engine = java.util.Random()
-        val signal = EnergySignal(values = List(500) { engine.nextGaussian() }.toListVector())
+        val signal = EnergySignal(1.0 / 10000, values = List(500) { engine.nextGaussian() }.toListVector())
         val input = signal
         val environment = List(delay) { i ->
             (1 - i / delay.toDouble()) * Random.nextDouble() / (delay * .25)
         }
-        var output = EnergySignal(values = listVectorOfZero(1))
+        var output = EnergySignal(1.0 / 10000, values = listVectorOfZero(1))
         environment.forEachIndexed { i, k ->
             output += input.delay(i) * k
         }

@@ -4,6 +4,7 @@ import org.mechdancer.algebra.implement.vector.vector2D
 import org.mechdancer.dependency.must
 import org.mechdancer.filters.signal.EnergySignal
 import org.mechdancer.remote.presets.RemoteHub
+import org.mechdancer.remote.presets.remoteHub
 import org.mechdancer.remote.protocol.writeEnd
 import org.mechdancer.remote.resources.Command
 import org.mechdancer.remote.resources.MulticastSockets
@@ -11,6 +12,9 @@ import org.mechdancer.remote.resources.Name
 import org.mechdancer.remote.resources.Networks
 import java.io.ByteArrayOutputStream
 import java.io.DataOutputStream
+import java.io.File
+import kotlin.math.pow
+import kotlin.system.measureNanoTime
 
 /** 生成网络连接信息字符串 */
 fun RemoteHub.networksInfo() =
@@ -139,6 +143,13 @@ fun RemoteHub.paintFrame3(
 
 // 画信号
 fun RemoteHub.paint(topic: String, signal: EnergySignal) =
+    signal.values.toList()
+        .forEachIndexed { i, value ->
+            paint(topic, signal.tBegin + i, value)
+        }
+
+// 画信号
+fun RemoteHub.paintFrame(topic: String, signal: EnergySignal) =
     signal.values.toList()
         .mapIndexed { i, value -> vector2D(signal.tBegin + i, value) }
         .let { paintFrame2(topic, listOf(it)) }

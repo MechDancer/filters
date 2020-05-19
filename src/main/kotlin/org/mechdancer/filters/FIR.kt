@@ -20,7 +20,7 @@ class FIR(k: List<Double>) {
 
     operator fun invoke(signal: EnergySignal): EnergySignal {
         clear()
-        return EnergySignal(values = signal.values.toList().map(::invoke).toListVector())
+        return EnergySignal(signal.fs, values = signal.values.toList().map(::invoke).toListVector())
     }
 
     fun clear() {

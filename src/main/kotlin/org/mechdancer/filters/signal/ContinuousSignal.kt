@@ -25,5 +25,5 @@ inline class ContinuousSignal(private val f: (t: Double) -> Double)
         ContinuousSignal { tao: Double -> this[tao] / k }
 
     fun sample(t: Double) =
-        PowerSignal { k: Int -> f(k * t) }
+        PowerSignal(1 / t) { k: Int -> f(k * t) }
 }
