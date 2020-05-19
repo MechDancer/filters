@@ -21,10 +21,10 @@ fun main() {
 
     val T = 1.0 / 10000
     val s = List(2000) { t ->
-        val x = fir(signal(t * T))
-        remote.paint("时域", t, x)
+        val x = fir(signal(t * T).asRe())
+        remote.paint("时域", t, x.re)
         Thread.sleep(1)
-        Complex(x)
+        x
     }
     val f = s.dft()
     (f.drop((f.size + 1) / 2) + f.take((f.size + 1) / 2))

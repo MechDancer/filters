@@ -1,6 +1,9 @@
 import org.mechdancer.algebra.implement.vector.listVectorOfZero
 import org.mechdancer.algebra.implement.vector.toListVector
 import org.mechdancer.filters.FIR
+import org.mechdancer.filters.algebra.Complex
+import org.mechdancer.filters.algebra.Complex.Companion
+import org.mechdancer.filters.algebra.asRe
 import org.mechdancer.filters.signal.EnergySignal
 import org.mechdancer.filters.signal.noise
 import org.mechdancer.remote.presets.remoteHub
@@ -21,12 +24,12 @@ fun main() {
 
     while (true) {
         val engine = java.util.Random()
-        val signal = EnergySignal(1.0 / 10000, values = List(500) { engine.nextGaussian() }.toListVector())
+        val signal = EnergySignal(1.0 / 10000, values = List(500) { engine.nextGaussian().asRe() })
         val input = signal
         val environment = List(delay) { i ->
             (1 - i / delay.toDouble()) * Random.nextDouble() / (delay * .25)
         }
-        var output = EnergySignal(1.0 / 10000, values = listVectorOfZero(1))
+        var output = EnergySignal(1.0 / 10000, values = listOf(Complex.zero))
         environment.forEachIndexed { i, k ->
             output += input.delay(i) * k
         }

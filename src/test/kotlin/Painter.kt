@@ -145,11 +145,11 @@ fun RemoteHub.paintFrame3(
 fun RemoteHub.paint(topic: String, signal: EnergySignal) =
     signal.values.toList()
         .forEachIndexed { i, value ->
-            paint(topic, signal.tBegin + i, value)
+            paint(topic, signal.tBegin + i, value.re)
         }
 
 // 画信号
 fun RemoteHub.paintFrame(topic: String, signal: EnergySignal) =
     signal.values.toList()
-        .mapIndexed { i, value -> vector2D(signal.tBegin + i, value) }
+        .mapIndexed { i, value -> vector2D(signal.tBegin + i, value.re) }
         .let { paintFrame2(topic, listOf(it)) }
